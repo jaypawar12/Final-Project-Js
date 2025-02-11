@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add to cart</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.min.css">
+    <style>
+        nav {
+            padding: 20px 0;
+            color: black;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        nav a {
+            font-size: 18px;
+            font-family: sans-serif;
+            color: black;
+            transition: all .3s linear;
+            position: relative;
+            margin: 0 10px;
+        }
+
+        nav a::after {
+            content: '';
+            width: 0%;
+            height: 2px;
+            background-color: red;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            transition: all .3s linear;
+        }
+
+        nav a:hover {
+            color: red;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<link rel="stylesheet" href="css/style.css">
+
+<body>
+    <nav style="color: black;">
+        <a href="./index1.html">Home</a>
+        <a href="./addTocart.html">Add to cart</a>
+        <a href="./login.html">Login</a>
+        <a href="./signUp.html">Sign Up</a>
+    </nav>
+
+    <h1>Add to cart</h1>
+    <div style="display: flex;">
+        <h3 style="margin-right: 10px;" id="totalQuntity"></h3>
+        <h3 id="totalPrice"></h3>
+    </div>
+
+    <div id="container"></div>
+
+    <script>
+
+        let totalQuntity = document.querySelector("#totalQuntity");
+        let totalPrice = document.querySelector("#totalPrice");
+        let container = document.querySelector("#container");
+        let add_to_cart_products = JSON.parse(localStorage.getItem("add_to_cart_products"));
+
+        function displaycartProduct(products) {
+            if (products == null || products.length == 0) {
+                container.innerHTML = "cart is empy";
+                totalQuntity.innerHTML = "";
+                totalPrice.innerHTML = "";
+                return;
+            }
+            let totalp = 0;
+            let totalq = 0;
+
+            let ihtm = "";
+            products.forEach((product, i) => {
+                totalp += product.price * product.quntity;
+                totalq += product.quntity
+                ihtm += `
+                    <div id="cart">
+                        <img src="${product.images[0]}" alt="">
+                        <h2 class="title" onclick=singleProduct(${product.id})>${product.title}</h2>
+                        <p>Price :- <span class="price">${product.price}</span>$</p>
+                        <p>Rating :- ${product.rating}<i class="ri-star-s-fill"></i></p>
+                        <button onclick="removeProduct(${product.id})">Remove</button>
+                        <button onclick="dec(${i})">-</button>
+                        <span class="quntity">${product.quntity}</span>
+                        <button onclick="inc(${i})">+</button>
+                    </div>
+                `
+            })
+            container.innerHTML = ihtm;
+            totalPrice.innerHTML = `Total Price:- ${totalp}`
+            totalQuntity.innerHTML = `Total Quantity:- ${totalq}`
+        }
+        displaycartProduct(add_to_cart_products)
+
+        function removeProduct(id) {
+            add_to_cart_products = add_to_cart_products.filter(product => product.id !== id);
+            localStorage.setItem(("add_to_cart_products"), JSON.stringify(add_to_cart_products));
+            displaycartProduct(add_to_cart_products);
+        }
+
+
+        function inc(i) {
+            let showQuntity = document.querySelectorAll(".quntity")[i];
+            let quntity = add_to_cart_products[i].quntity;
+            showQuntity.innerHTML = ++quntity;
+            console.log(quntity);
+            console.log(add_to_cart_products[i].price);
+            add_to_cart_products[i].quntity = quntity;
+            localStorage.setItem("add_to_cart_products", JSON.stringify(add_to_cart_products));
+            displaycartProduct(add_to_cart_products);
+        }
+
+        function dec(i) {
+            let showQuntity = document.querySelectorAll(".quntity")[i];
+            let quntity = add_to_cart_products[i].quntity;
+            if (quntity <= 1) {
+                add_to_cart_products.splice(i, 1);
+                localStorage.setItem("add_to_cart_products", JSON.stringify(add_to_cart_products));
+                displaycartProduct(add_to_cart_products);
+                return;
+            }
+            showQuntity.innerHTML = --quntity;
+            console.log(quntity);
+            add_to_cart_products[i].quntity = quntity;
+            localStorage.setItem("add_to_cart_products", JSON.stringify(add_to_cart_products));
+            displaycartProduct(add_to_cart_products);
+        }
+
+
+    </script>
+</body>
+
+</html>

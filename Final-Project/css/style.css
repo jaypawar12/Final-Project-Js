@@ -1,0 +1,296 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --theme-light: #ffffff;
+    --theme-dark: #000000;
+    --theme-color: red;
+    --title-font: "Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif";
+    --text-font: '';
+    --overlay: #000000b3;
+    --theme-bg-color: #f7f7f7;
+}
+
+.container {
+    width: 100%;
+    max-width: 1320px;
+    padding: 0 15px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+body {
+    background-color: rgb(18, 231, 231);
+    background: linear-gradient(145deg, #f0f8ff, #c3e6ff);
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+body {
+    font-family: var(--text-font);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--title-font);
+}
+
+.d-flex {
+    display: flex;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.relative {
+    position: relative;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.col-1 {
+    width: 8.33%;
+}
+
+.col-2 {
+    width: 16.66%;
+}
+
+.col-3 {
+    width: 25%;
+}
+
+.col-4 {
+    width: 33.33%;
+}
+
+.col-5 {
+    width: 41.65%;
+}
+
+.col-6 {
+    width: 50%;
+}
+
+.col-7 {
+    width: 58.33%;
+}
+
+.col-8 {
+    width: 66.64%;
+}
+
+.col-9 {
+    width: 75%;
+}
+
+.col-10 {
+    width: 83.3%;
+}
+
+.col-11 {
+    width: 91.63%;
+}
+
+.col-12 {
+    width: 100%;
+}
+
+.h-100 {
+    height: 100%;
+}
+
+h1 {
+    text-align: center;
+    margin: 10px 0;
+}
+
+header {
+    background-color: rgb(137 0 0);
+    height: 80px;
+    color: whitesmoke;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    border-bottom: 3px solid var(--theme-dark);
+}
+
+header .logo {
+    display: inline-block;
+    width: 80px;
+    margin: 6px 20px 0 16px;
+}
+
+nav {
+    padding: 20px 0;
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+nav a {
+    font-size: 18px;
+    font-weight: 600;
+    font-family: sans-serif;
+    color: orange;
+    transition: all .3s linear;
+    position: relative;
+    margin: 0 10px;
+}
+
+nav a::after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background-color: var(--theme-dark);
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    transition: all .3s linear;
+}
+
+nav a:hover {
+    color: var(--theme-dark);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+.mainDiv {
+    display: flex;
+}
+
+.inputfield {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.inputfield input {
+    padding: 10px 20px;
+    border-radius: 10px;
+    width: 300px;
+    margin-left: 15px;
+}
+
+.inputfield i {
+    font-size: 25px;
+    color: var(--theme-light);
+}
+
+#containerDiv {
+    padding: 0 20px;
+    text-align: center;
+    flex-grow: 1;
+}
+
+#container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto;
+    gap: 15px;
+    margin: 30px 0;
+}
+
+#cart {
+    background-color: rgba(0, 0, 0, 0.341);
+    color: var(--theme-light);
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 20px;
+}
+
+#cart img {
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+}
+
+#cart h2 {
+    cursor: pointer;
+    color: black;
+    margin: 5px 0;
+}
+#cart p{
+    font-size: 18px;
+    font-weight: 600;
+    color:var(--theme-light);
+    margin: 10px 0;
+}
+
+button {
+    padding: 6px 20px;
+    text-wrap: nowrap;
+    background-color: black;
+    color: var(--theme-light);
+    border: none;
+    border-radius: 10px;
+}
+
+#sidebar {
+    padding: 0 20px;
+    border-right: 5px solid var(--theme-dark);
+}
+
+#sidebar h3 {
+    margin: 20px 0 10px 0;
+}
+
+#sidebar input {
+    margin: 5px 5px;
+}
+
+.showSidebar {
+    display: none;
+}
+
+#pagination button{
+    border: none;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+}
+#pagination span{
+    font-size: 20px;
+}
+footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #212121;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+}

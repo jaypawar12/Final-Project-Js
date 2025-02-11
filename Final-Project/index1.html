@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Project</title>
+    <!-- remixicon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <!-- external-css -->
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+
+<body>
+    <header class="d-flex align-items-center justify-between">
+        <a href="javascript:void" class="logo">
+            <img src="https://seeklogo.com/images/E/e-commerce-logo-B0AE7EE720-seeklogo.com.png" alt="header-logo"
+                width="100%">
+        </a>
+        <nav class="d-flex align-items-center justify-between">
+            <ul class="d-flex">
+                <li><a href="./index1.html">Home</a></li>
+                <li><a href="./addTocart.html">Add to cart</a></li>
+                <li><a href="javascript:void(0)">Login</a></li>
+                <li><a href="javascript:void(0)">Sign Up</a></li>
+            </ul>
+        </nav>
+        
+        <div class="inputfield">
+            <i class="ri-menu-2-line" id="toggle"></i>
+            <input type="text" id="searching" placeholder="Search here...">
+        </div>
+    </header>
+
+
+    <main>
+        <h1>All Products</h1>
+        <div class="product-sec d-flex">
+            <div class="mainDiv">
+                <div id="sidebar">
+                    <button id="shortingByPrice">Shorting By Price <span id="shortingArrow">↓</span></button>
+                    <h3>Price</h3>
+                    <input type="checkbox" class="priceCheckbox" value="0-50"><label>0$ to 50$</label><br>
+                    <input type="checkbox" class="priceCheckbox" value="51-100"><label>51$ to 100$</label><br>
+                    <input type="checkbox" class="priceCheckbox" value="101-500"><label>101$ to 500$</label><br>
+                    <input type="checkbox" class="priceCheckbox" value="501-1500"><label>501$ to 1500$</label><br>
+                    <input type="checkbox" class="priceCheckbox" value="1500+"><label>1500$ +</label><br>
+    
+                    <h3>Category</h3>
+                    <input type="checkbox" class="categoryCheckbox" value="mens"><label>Men's</label><br>
+                    <input type="checkbox" class="categoryCheckbox" value="womens"><label>Women's</label><br>
+                    <input type="checkbox" class="categoryCheckbox" value="vehicle"><label>Vehicles</label><br>
+                    <input type="checkbox" class="categoryCheckbox" value="groceries"><label>Groceries</label><br>
+                    <input type="checkbox" class="categoryCheckbox" value="electronics"><label>Electronics</label><br>
+                    <input type="checkbox" class="categoryCheckbox" value="furniture"><label>Furniture</label><br>
+                    <input type="checkbox" class="categoryCheckbox" value="sports"><label>Sports-accessries</label><br>
+    
+                </div>
+            </div>
+            <div id="containerDiv">
+                <div id="container"></div>
+                <div id="pagination">
+                    <button disabled id="prev">Prev</button>
+                    <span id="pageShow"></span>
+                    <button id="next">Next</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>footer content</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
