@@ -256,6 +256,7 @@ button {
     color: var(--theme-light);
     border: none;
     border-radius: 10px;
+    margin-bottom: 5px;
 }
 
 #sidebar {

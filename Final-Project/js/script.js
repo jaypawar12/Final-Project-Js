@@ -29,7 +29,7 @@ fetch('https://dummyjson.com/products?limit=194')
 
 let container = document.querySelector("#container");
 
-// display all product 
+// Updated displayProduct function with Edit button
 function displayProduct(disproducts) {
     let ihtm = "";
     disproducts.forEach((product, i) => {
@@ -40,36 +40,66 @@ function displayProduct(disproducts) {
                 <p>Price :- ${product.price}$</p>
                 <p>Rating :- ${product.rating}<i class="ri-star-s-fill"></i></p>
                 <button onclick=addTocart(${product.id})>Add to cart</button>
+                <button onclick=editProduct(${product.id})>Edit</button>
                 <button onclick=deleteProduct(${product.id})>Delete</button>
             </div>
-        `
-    })
+        `;
+    });
     container.innerHTML = ihtm;
-    let checkNextData = [];
-    if (priceFilter) {
-        checkNextData = priceFilterProduct.slice(page * 12, (page * 12) + 1);
-    } else if (categoryFilter) {
-        checkNextData = categoryFilterProduct.slice(page * 12, (page * 12) + 1);
-        console.log(products);
-    } else {
-        checkNextData = products.slice(page * 12, (page * 12) + 1);
-    }
-    console.log("checkNextData", checkNextData);
-    console.log("price filter", priceFilter);
-    if (checkNextData.length === 0) {
-        nextBtn.disabled = true;
-    } else {
-        nextBtn.disabled = false;
+}
+
+// Function to handle editing a product
+function editProduct(id) {
+    const product = products.find(item => item.id === id);
+    if (product) {
+        openForm();
+        document.getElementById('productName').value = product.title;
+        document.getElementById('productPrice').value = product.price;
+        document.getElementById('productImage').value = product.images[0];
+        document.getElementById('productCategory').value = product.category;
+
+        const submitBtn = document.querySelector("#productForm button:first-of-type");
+        submitBtn.textContent = "Update";
+        submitBtn.onclick = function() {
+            updateProduct(id);
+        };
     }
 }
 
+// Function to update the product details
+function updateProduct(id) {
+    const updatedName = document.getElementById('productName').value;
+    const updatedPrice = document.getElementById('productPrice').value;
+    const updatedImage = document.getElementById('productImage').value;
+    const updatedCategory = document.getElementById('productCategory').value;
 
-// single product 
-function singleProduct(id) {
-    let product = products.find(item => item.id === id)
-    localStorage.setItem("singleProduct", JSON.stringify(product));
-    window.location.href = "singleProduct.html";
+    const productIndex = products.findIndex(item => item.id === id);
+    if (productIndex !== -1) {
+        products[productIndex].title = updatedName;
+        products[productIndex].price = parseFloat(updatedPrice);
+        products[productIndex].images[0] = updatedImage;
+        products[productIndex].category = updatedCategory;
+
+        displayProduct(products.slice((page - 1) * 12, page * 12));
+        closeForm();
+    }
 }
+
+// Reset form and button when closing the form
+function closeForm() {
+    document.getElementById('productForm').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+
+    document.getElementById('productName').value = '';
+    document.getElementById('productPrice').value = '';
+    document.getElementById('productImage').value = '';
+    document.getElementById('productCategory').value = '';
+
+    const submitBtn = document.querySelector("#productForm button:first-of-type");
+    submitBtn.textContent = "Submit";
+    submitBtn.onclick = addProduct;
+} 
+
 
 // delete product 
 function deleteProduct(id) {
